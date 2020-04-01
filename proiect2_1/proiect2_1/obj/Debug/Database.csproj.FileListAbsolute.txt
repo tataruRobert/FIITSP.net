@@ -1,0 +1,11 @@
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\bin\Debug\proiect2_1.dll.config
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\bin\Debug\proiect2_1.dll
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\bin\Debug\proiect2_1.pdb
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\bin\Debug\EntityFramework.dll
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\bin\Debug\EntityFramework.xml
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\obj\Debug\Database.csprojAssemblyReference.cache
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\obj\Debug\Database.csproj.CopyComplete
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\obj\Debug\proiect2_1.dll
+C:\Users\Robert\source\repos\proiect2_1\proiect2_1\obj\Debug\proiect2_1.pdb

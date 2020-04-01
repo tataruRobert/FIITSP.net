@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="Photos" EntityType="Model1.Store.Photos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Locations" EntityType="Model1.Store.Locations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="Model1.Store.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Features" EntityType="Model1.Store.Features" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="PhotosLocations" Association="Model1.Store.PhotosLocations">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="Locations" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="PhotosPeople" Association="Model1.Store.PhotosPeople">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="PhotosFeatures" Association="Model1.Store.PhotosFeatures">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="Features" EntitySet="Features" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Photos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Path" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhotosId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhotosId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Features">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Desc" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhotosId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="PhotosLocations">
+    <End Role="Photos" Type="Model1.Store.Photos" Multiplicity="1" />
+    <End Role="Locations" Type="Model1.Store.Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locations">
+        <PropertyRef Name="PhotosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PhotosPeople">
+    <End Role="Photos" Type="Model1.Store.Photos" Multiplicity="1" />
+    <End Role="People" Type="Model1.Store.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="PhotosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PhotosFeatures">
+    <End Role="Photos" Type="Model1.Store.Photos" Multiplicity="1" />
+    <End Role="Features" Type="Model1.Store.Features" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Features">
+        <PropertyRef Name="PhotosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

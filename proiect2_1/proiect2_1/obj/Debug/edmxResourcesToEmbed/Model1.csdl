@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Photos" EntityType="Model1.Photos" />
+    <EntitySet Name="Locations" EntityType="Model1.Locations" />
+    <EntitySet Name="People" EntityType="Model1.People" />
+    <EntitySet Name="Features" EntityType="Model1.Features" />
+    <AssociationSet Name="PhotosLocations" Association="Model1.PhotosLocations">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="Locations" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="PhotosPeople" Association="Model1.PhotosPeople">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="PhotosFeatures" Association="Model1.PhotosFeatures">
+      <End Role="Photos" EntitySet="Photos" />
+      <End Role="Features" EntitySet="Features" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Photos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Path" Type="String" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Locations" Relationship="Model1.PhotosLocations" FromRole="Photos" ToRole="Locations" />
+    <NavigationProperty Name="People" Relationship="Model1.PhotosPeople" FromRole="Photos" ToRole="People" />
+    <NavigationProperty Name="Features" Relationship="Model1.PhotosFeatures" FromRole="Photos" ToRole="Features" />
+  </EntityType>
+  <EntityType Name="Locations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="Photo" Relationship="Model1.PhotosLocations" FromRole="Locations" ToRole="Photos" />
+    <Property Name="PhotosId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="Photo" Relationship="Model1.PhotosPeople" FromRole="People" ToRole="Photos" />
+    <Property Name="PhotosId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Features">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Desc" Type="String" Nullable="false" />
+    <NavigationProperty Name="Photo" Relationship="Model1.PhotosFeatures" FromRole="Features" ToRole="Photos" />
+    <Property Name="PhotosId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="PhotosLocations">
+    <End Type="Model1.Photos" Role="Photos" Multiplicity="1" />
+    <End Type="Model1.Locations" Role="Locations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Locations">
+        <PropertyRef Name="PhotosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PhotosPeople">
+    <End Type="Model1.Photos" Role="Photos" Multiplicity="1" />
+    <End Type="Model1.People" Role="People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="PhotosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PhotosFeatures">
+    <End Type="Model1.Photos" Role="Photos" Multiplicity="1" />
+    <End Type="Model1.Features" Role="Features" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Features">
+        <PropertyRef Name="PhotosId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
